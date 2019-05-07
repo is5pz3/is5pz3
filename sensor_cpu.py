@@ -28,9 +28,9 @@ init_data = {
 r = requests.post(args.address, data=json.dumps(init_data))
 if(r.status_code == 200):
     while(True):
-        timestamp = int(datetime.timestamp(datetime.now()))
+        timestamp = datetime.timestamp(datetime.now())
         msrmnt = {
-            "timestamp": timestamp,
+            "timestamp": int(timestamp),
             "value": psutil.cpu_percent()
         }
         try:
