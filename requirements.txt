@@ -1,0 +1,5 @@
+psutil
+pause
+requests
+argparse
+datetime
