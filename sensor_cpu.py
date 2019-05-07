@@ -19,19 +19,19 @@ parser.add_argument('--interval', '-i',
 args = parser.parse_args()
 
 init_data = {
-    "sensor_id" : args.name,
-    "host_name" : socket.gethostname(),
-    "platform" : platform.system() + " "+platform.release(),
-    "metric" : "CpuUsage",
-    "unit" : "%"
+    "sensor_id": args.name,
+    "host_name": socket.gethostname(),
+    "platform": platform.system() + " "+platform.release(),
+    "metric": "CpuUsage",
+    "unit": "%"
 }
 r = requests.post(args.address, data=json.dumps(init_data))
 if(r.status_code == 200):
     while(True):
         timestamp = int(datetime.timestamp(datetime.now()))
         msrmnt = {
-            "timestamp" : timestamp,
-            "value" : psutil.cpu_percent()
+            "timestamp": timestamp,
+            "value": psutil.cpu_percent()
         }
         try:
             requests.post(args.address, data=json.dumps(msrmnt))
